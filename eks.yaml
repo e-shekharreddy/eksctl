@@ -15,6 +15,6 @@ managedNodeGroups:
     - t3a.medium
     - m5.large
     - m5a.large
-  capacityType: SPOT
-  desiredCapacity: 2
+capacityType: SPOT
+desiredCapacity: 2
   
