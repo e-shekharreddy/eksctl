@@ -8,12 +8,14 @@ metadata:
   region: us-east-1
 
 managedNodeGroups:
-
-- name: spot
-  instanceTypes:
-    - t3.medium
-    - t3a.medium
-    - m5.large
-    - m5a.large
-  spot: true
-  desiredCapacity: 2
+  - name: spot
+    instanceTypes:
+      - t3.medium
+      - t3a.medium
+      - m5.large
+      - m5a.large
+    spot: true
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    availabilityZones: ["us-east-1a", "us-east-1b", "us-east-1c"]
