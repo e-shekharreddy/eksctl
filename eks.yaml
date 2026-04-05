@@ -5,15 +5,18 @@ metadata:
   name: roboshop
   region: us-east-1
 
-# CRITICAL: This fixes the "OIDC is disabled" error in your logs
+# This creates the OIDC provider required for the VPC CNI
 iam:
-  withOIDC: true 
+  withOIDC: true
 
 managedNodeGroups:
   - name: spot
-    instanceTypes: ["c5.large","c5d.large","c5n.large","c5a.large","c6i.large","c6a.large"]
+    instanceTypes: ["c5.large","c5a.large","c6i.large"]
     spot: true
     desiredCapacity: 2
+    # Ensure this section is indented exactly like this
     iam:
       withAddonPolicies:
         vpcCNI: true
+        cloudWatch: true
+        autoScaler: true
