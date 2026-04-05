@@ -1,4 +1,3 @@
-# spot-cluster.yaml
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -6,13 +5,15 @@ metadata:
   name: roboshop
   region: us-east-1
 
+# CRITICAL: This fixes the "OIDC is disabled" error in your logs
+iam:
+  withOIDC: true 
+
 managedNodeGroups:
   - name: spot
-    # Removed c3 and c4 for better compatibility with EKS 1.34
     instanceTypes: ["c5.large","c5d.large","c5n.large","c5a.large","c6i.large","c6a.large"]
     spot: true
     desiredCapacity: 2
-    # Recommended: Add this to fix the vpc-cni error from your logs
     iam:
       withAddonPolicies:
         vpcCNI: true
