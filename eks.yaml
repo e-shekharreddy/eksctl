@@ -1,4 +1,5 @@
 # spot-cluster.yaml
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -8,13 +9,11 @@ metadata:
 
 managedNodeGroups:
 
-# Cheap nodes (Spot)
 - name: spot
   instanceTypes:
     - t3.medium
     - t3a.medium
     - m5.large
     - m5a.large
-capacityType: SPOT
-desiredCapacity: 2
-  
+  spot: true
+  desiredCapacity: 2
