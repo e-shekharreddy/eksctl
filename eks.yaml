@@ -1,5 +1,4 @@
 # spot-cluster.yaml
-
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -9,13 +8,11 @@ metadata:
 
 managedNodeGroups:
   - name: spot
-    instanceTypes:
-      - t3.medium
-      - t3a.medium
-      - m5.large
-      - m5a.large
+    # Removed c3 and c4 for better compatibility with EKS 1.34
+    instanceTypes: ["c5.large","c5d.large","c5n.large","c5a.large","c6i.large","c6a.large"]
     spot: true
     desiredCapacity: 2
-    minSize: 1
-    maxSize: 3
-    availabilityZones: ["us-east-1a", "us-east-1b", "us-east-1c"]
+    # Recommended: Add this to fix the vpc-cni error from your logs
+    iam:
+      withAddonPolicies:
+        vpcCNI: true
