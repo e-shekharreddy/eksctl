@@ -12,3 +12,5 @@ managedNodeGroups:
   instanceTypes: ["c5.large","c5d.large","c5n.large","c5a.large"]
   spot: true
   desiredCapacity: 2
+
+  
